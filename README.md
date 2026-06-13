@@ -93,3 +93,8 @@ Plungins
 ```js
 
 ````
+
+## Openrewrite
+
+#### Receipes:
+OpenRewrite keine „Major vs. Minor"-Logik hat. Es kennt diesen Unterschied nicht und hat auch kein allowMajorUpdates-Flag wie das versions-plugin. OpenRewrite hebt immer genau auf die Version, für die das Recipe gebaut ist. 
