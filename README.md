@@ -17,7 +17,7 @@ mvn versions:display-property-updates       # Versionen über <properties>
 [INFO]   ${spring.version} .................................... 7.0.0 -> 7.0.8
 [INFO]   ${tomcat.version} ................................ 11.0.1 -> 11.0.22
 ````
-<br><br>
+<br>
 
 ```js
 mvn versions:display-dependency-updates    # fest verdrahtete <version>
@@ -29,6 +29,8 @@ mvn versions:display-dependency-updates    # fest verdrahtete <version>
 [INFO]   org.springframework:spring-aspects .................... 7.0.0 -> 7.0.8
 [INFO]   org.apache.tomcat.embed:tomcat-embed-core ......... 11.0.1 -> 11.0.22
 ````
+
+<br>
 
 ```js
 mvn versions:display-plugin-updates         # Plugin-Versionen
