@@ -45,9 +45,11 @@ mvn versions:use-latest-releases            # hebt Dependencies an
 mvn versions:update-properties              # hebt Versions-Properties an
 mvn versions:use-latest-versions            # inkl. Snapshots/Milestones (Vorsicht)
 ````
+<br>
 
+Plungins
 ```js
-mvn versions:use-latest-releases            # hebt Dependencies an
-mvn versions:update-properties              # hebt Versions-Properties an
-mvn versions:use-latest-versions            # inkl. Snapshots/Milestones (Vorsicht)
+mvn versions:display-dependency-updates    # Libraries (fest verdrahtet)
+mvn versions:display-property-updates       # Libraries (über Properties)
+mvn versions:display-plugin-updates         # Build-Plugins
 ````
