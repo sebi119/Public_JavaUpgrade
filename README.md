@@ -4,6 +4,18 @@
  Nutze Maven (mvn) für Minor updates und OpenRewrite für größere, das OR auch im Code ändern kann.<br> 
  mvn hat das Flag -DallowMajorUpdates=false damit er nicht auf den Major upgradet.<br>
  mvn wird 2 Fach aufgerufen (Properties und Dependecies)
+### Quickrun
+
+```js
+mvn versions:use-latest-releases -DallowMajorUpdates=false # nur Minor + Patch (kein Major-Sprung 6.x -> 7.x):
+mvn versions:update-properties -DallowMajorUpdates=false # nur Minor + Patch (kein Major-Sprung 6.x -> 7.x):
+mvn clean verify
+````
+
+
+
+<hr>
+
 
 ## Upgradeables
 
@@ -33,6 +45,9 @@ mvn versions:display-property-updates       # Versionen über <properties>
 <br>
 
 ##### Properties-Versionen
+
+
+
 
 ```js
 mvn versions:display-dependency-updates    # fest verdrahtete <version>
