@@ -19,7 +19,7 @@
 mvn versions:display-property-updates       # Versionen über <properties>
 ````
 
-sql
+```sql
 [INFO] The following version property updates are available:
 [INFO]   ${spring.version} .................................... 7.0.0 -> 7.0.8
 [INFO]   ${tomcat.version} ................................ 11.0.1 -> 11.0.22
