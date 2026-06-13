@@ -56,6 +56,7 @@ mvn versions:use-latest-releases            # hebt Dependencies an
 mvn versions:use-latest-releases -DallowMinorUpdates=false # nur Patch (kein Minor, kein Major) -- am konservativsten:
 
 mvn versions:update-properties              # hebt Versions-Properties an
+=> mvn versions:update-properties -DallowMajorUpdates=false # nur Minor + Patch (kein Major-Sprung 6.x -> 7.x):
 mvn versions:use-latest-versions            # inkl. Snapshots/Milestones (Vorsicht)
 ````
 
