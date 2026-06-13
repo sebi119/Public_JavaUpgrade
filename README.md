@@ -3,7 +3,9 @@
 # Zusammenfassung
  Nutze Maven (mvn) für Minor updates und OpenRewrite für größere, das OR auch im Code ändern kann.<br> 
  mvn hat das Flag -DallowMajorUpdates=false damit er nicht auf den Major upgradet.<br>
- mvn wird 2 Fach aufgerufen (Properties und Dependecies)
+ mvn wird 2 Fach aufgerufen (Properties und Dependecies)<br>
+ OpenRewrite: Die Inkompatibilitäten, die dir (mvn) update-properties hinterlassen würde, arbeitet das Recipe (zum Großteil) gleich mit ab.<br>
+ 
 ### Quickrun
 
 ```js
