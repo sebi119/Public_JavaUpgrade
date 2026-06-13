@@ -1,4 +1,4 @@
-# Public_JavaUpgrade
+<img width="1283" height="179" alt="grafik" src="https://github.com/user-attachments/assets/ea8e2395-943d-46e5-a811-caf82c154ac4" /># Public_JavaUpgrade
 
 # Zusammenfassung
  Nutze Maven (mvn) für Minor updates und OpenRewrite für größere, das OR auch im Code ändern kann.<br> 
@@ -12,7 +12,12 @@
 mvn versions:use-latest-releases -DallowMajorUpdates=false # nur Minor + Patch (kein Major-Sprung 6.x -> 7.x):
 mvn versions:update-properties -DallowMajorUpdates=false # nur Minor + Patch (kein Major-Sprung 6.x -> 7.x):
 mvn clean verify
+
+# Openrewrite
+mvn -U org.openrewrite.maven:rewrite-maven-plugin:run -Drewrite.recipeArtifactCoordinates=org.openrewrite.recipe:rewrite-spring:RELEASE  -Drewrite.activeRecipes=org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_5
 ````
+
+
 
 
 
