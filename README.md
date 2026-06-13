@@ -1,11 +1,14 @@
 # Public_JavaUpgrade
 
+## Reqwrite vs. MVN
 
+<b>versions-maven-plugin:</b> Patch-/Minor-Bumps, „alles mal aktuell" haltenechte<br>
+<b>Reqwrite:</b> Versionssprünge (Java 17→21, Boot 2→3)
 
-### Veraltete Versionen auflisten (der "IstStand"):
+### ReadOnly: Veraltete Versionen auflisten (der "IstStand"):
 
 ```js
-mvn versions:display-property-updates
+mvn versions:display-property-updates       # Versionen über <properties>
 
 ````
 
@@ -17,7 +20,7 @@ mvn versions:display-property-updates
 
 
 ```js
-mvn versions:display-dependency-updates
+mvn versions:display-dependency-updates    # fest verdrahtete <version>
 ````
 
 ```sql
@@ -25,4 +28,24 @@ mvn versions:display-dependency-updates
 [INFO]   org.springframework:spring-aop ........................ 7.0.0 -> 7.0.8
 [INFO]   org.springframework:spring-aspects .................... 7.0.0 -> 7.0.8
 [INFO]   org.apache.tomcat.embed:tomcat-embed-core ......... 11.0.1 -> 11.0.22
+````
+
+```js
+mvn versions:display-plugin-updates         # Plugin-Versionen
+````
+....
+
+### Writes Code
+
+Rewrite: 
+```js
+mvn versions:use-latest-releases            # hebt Dependencies an
+mvn versions:update-properties              # hebt Versions-Properties an
+mvn versions:use-latest-versions            # inkl. Snapshots/Milestones (Vorsicht)
+````
+
+```js
+mvn versions:use-latest-releases            # hebt Dependencies an
+mvn versions:update-properties              # hebt Versions-Properties an
+mvn versions:use-latest-versions            # inkl. Snapshots/Milestones (Vorsicht)
 ````
