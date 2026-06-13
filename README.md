@@ -1,58 +1,62 @@
-# Was kann man in der POM updaten — und wie?
+# Public_JavaUpgrade
 
-Überblick über die voneinander unabhängigen Dinge im POM, die jeweils ein
-eigenes Goal haben (oder nur von Hand gehen). Werkzeug: `versions-maven-plugin`.
+## Upgradeables
 
-## Übersicht
+- Dependency-Versionen
+- Versions-Properties // ist eine Variable
+- Plugin-Versionen (per hand)
+### Reqwrite vs. MVN
+<b>versions-maven-plugin:</b> Patch-/Minor-Bumps, „alles mal aktuell" haltenechte<br>
 
-| Was im POM | Anzeigen | Automatisch schreiben |
-|---|---|---|
-| **Dependency-Versionen** (`<dependencies>`, fest verdrahtet) | `display-dependency-updates` | `use-latest-releases` / `use-next-releases` |
-| **Versions-Properties** (`<properties>`) | `display-property-updates` | `update-properties` (alle) / `update-property` (einzeln) |
-| **Plugin-Versionen** (`<build><plugins>` + `pluginManagement`) | `display-plugin-updates` | ✗ — **nur von Hand** |
-| **Parent-POM-Version** (`<parent>`) | (im plugin-updates-Lauf mit dabei) | `update-parent` |
-| **Eigene Projekt-Version** (das `<version>` des Artefakts selbst) | — | `set -DnewVersion=…` |
+<b>Reqwrite:</b> Versionssprünge (Java 17→21, Boot 2→3)
 
-## Einordnung
+### ReadOnly: Veraltete Versionen auflisten (der "IstStand"):
 
-### Fremde Versionen (Libraries + Build-Werkzeuge)
-Die ersten drei Zeilen = „Sachen, gegen die du baust".
-- Dependencies + Properties: haben Auto-Schreiben.
-- Plugins: **kein** Auto-Schreiben (bewusst — ein Plugin-Update kann das
-  Build-Verhalten ändern: anderer Output, neue Defaults).
 
-### Eigene Versionen
-- `update-parent` → hebt die Version an, mit der ein Modul auf sein Eltern-POM
-  zeigt (`<parent><version>…`).
-- `set` → ändert die eigene Projekt-Version (z.B. `X.Y.local` → `X.Z.local`).
-  Im Multi-Modul-Reactor setzt `set` die Version in ALLEN Modulen gleichzeitig
-  konsistent.
+##### Dependency-Versionen
 
-### Multi-Modul-Spezial
-- `versions:update-child-modules` → synchronisiert die Parent-Referenzen in den
-  Modulen, falls sie auseinanderlaufen. Bei sauberem Reactor selten nötig.
+```js
+mvn versions:display-property-updates       # Versionen über <properties>
+````
 
-## Was das versions-plugin NICHT anfasst
-Struktur/Konfiguration, keine Versionen → immer manuell:
-- die `<modules>`-Liste
-- `<profiles>`
-- hartcodierte Build-Pfade (besser ganz raus → relativ zu `${project.basedir}`)
-- `finalName`
+sql
+[INFO] The following version property updates are available:
+[INFO]   ${spring.version} .................................... 7.0.0 -> 7.0.8
+[INFO]   ${tomcat.version} ................................ 11.0.1 -> 11.0.22
+````
 
-## Merksatz
-- **Fremde Versionen** (Dependencies, Properties, Plugins)
-  → `display-` / `use-` / `update-`-Goals
-- **Eigene Versionen** (Projekt-Version, Parent)
-  → `set` / `update-parent`
-- **Struktur** → Handarbeit
+<br>
 
-## Befehle zum Anzeigen (ändern nichts) — vollständiger Überblick
-```
-mvn versions:display-dependency-updates    # Libraries (fest verdrahtet)
-mvn versions:display-property-updates       # Libraries (über Properties)
-mvn versions:display-plugin-updates         # Build-Plugins
-```
+##### Properties-Versionen
 
-## Tipp: nur stabile Versionen (RC/Milestone/Beta rausfiltern)
-Im Plugin eine `<configuration><ruleSet>` mit `ignoreVersions` (Regex) hinterlegen
-— gilt dann automatisch für alle Goals. Funktioniert inline ab Plugin-Version 2.15+.
+```js
+mvn versions:display-dependency-updates    # fest verdrahtete <version>
+````
+
+```sql
+[INFO] The following version property updates are available:
+[INFO]   org.springframework:spring-aop ........................ 7.0.0 -> 7.0.8
+[INFO]   org.springframework:spring-aspects .................... 7.0.0 -> 7.0.8
+[INFO]   org.apache.tomcat.embed:tomcat-embed-core ......... 11.0.1 -> 11.0.22
+````
+<br>
+  
+```js
+mvn versions:display-plugin-updates         # Plugin-Versionen
+````
+....
+
+### Write : Veraltete Versionen Heben
+
+Rewrite: 
+
+```js
+mvn versions:use-latest-releases            # hebt Dependencies an
+mvn versions:update-properties              # hebt Versions-Properties an
+mvn versions:use-latest-versions            # inkl. Snapshots/Milestones (Vorsicht)
+````
+
+<br>
+Plungins
+```js
+````
