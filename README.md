@@ -52,6 +52,9 @@ Rewrite:
 
 ```js
 mvn versions:use-latest-releases            # hebt Dependencies an
+mvn versions:use-latest-releases -DallowMajorUpdates=false # nur Minor + Patch (kein Major-Sprung 6.x -> 7.x):
+mvn versions:use-latest-releases -DallowMinorUpdates=false mvn versions:use-latest-releases -DallowMinorUpdates=false
+
 mvn versions:update-properties              # hebt Versions-Properties an
 mvn versions:use-latest-versions            # inkl. Snapshots/Milestones (Vorsicht)
 ````
