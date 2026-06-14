@@ -101,3 +101,17 @@ Plungins
 
 #### Receipes:
 OpenRewrite keine „Major vs. Minor"-Logik hat. Es kennt diesen Unterschied nicht und hat auch kein allowMajorUpdates-Flag wie das versions-plugin. OpenRewrite hebt immer genau auf die Version, für die das Recipe gebaut ist. Das bedeutet: Du hast ein Recipe laufen lassen, das die 6.2-Linie als Ziel hat — höchstwahrscheinlich UpgradeSpringBoot_3_4 oder _3_5. Diese Recipes ketten intern UpgradeSpringFramework_6_2 
+
+
+
+### Maven Plugin
+
+
+
+```js
+ <plugin>
+     <groupId>org.codehaus.mojo</groupId>
+     <artifactId>versions-maven-plugin</artifactId>
+     <version>2.21.0</version>
+ </plugin>
+````
